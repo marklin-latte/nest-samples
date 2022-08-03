@@ -1,0 +1,15 @@
+version: '3.5'
+
+services:
+  postgres:
+    container_name: postgres_container
+    image: postgres:14.4-alpine
+    environment:
+      POSTGRES_USER: hahow
+      POSTGRES_PASSWORD: 12345
+      PGDATA: /data/postgres
+    volumes:
+      - ./docker-data/postgres
+    ports:
+      - '5432:5432'
+    restart: unless-stopped
