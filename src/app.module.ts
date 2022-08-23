@@ -7,10 +7,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import * as path from 'path';
 import { RouterModule } from 'nest-router';
 import { routers } from './app.routes';
-import { TenantModule } from './modules/public/tenants/tenant.module';
-import { TenancyModule } from './modules/global/tenancy/tenancy.module';
-import { CreatorModule } from './modules/tenanted/creator/creator.module';
-import { ArticleModule } from './modules/tenanted/article/article.module';
+import { PublicModule } from './modules/public/public.module';
+import { TenantedModule } from './modules/tenanted/tenanted.module';
+import { GlobalModule } from './modules/global/global.module';
 
 @Module({
   imports: [
@@ -39,10 +38,9 @@ import { ArticleModule } from './modules/tenanted/article/article.module';
       },
       inject: [ConfigService],
     }),
-    TenantModule,
-    TenancyModule,
-    CreatorModule,
-    ArticleModule,
+    PublicModule,
+    GlobalModule,
+    TenantedModule,
   ],
   controllers: [AppController],
   providers: [AppService],
