@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CreatorService } from './creator.service';
 import { CreateCreatorDto } from '../dto/create-creator.dto';
-import { CONNECTION } from '../../../../constns/tenancy';
+import { CONNECTION } from '../../../../constants/tenancy';
 import { Creator } from '../entity/creator.entity';
 
 describe('CreatorService', () => {

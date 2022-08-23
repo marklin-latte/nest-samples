@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { CreateTenantDto } from '../dto/create-tenant.dto';
+import { CreateTenantDto } from '../dto/admin-create-tenant.dto';
 import { Tenant } from '../entity/tenant.entity';
 import { TenantsService } from '../service/tenants.service';
 

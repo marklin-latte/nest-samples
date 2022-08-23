@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreateTenantDto } from '../dto/create-tenant.dto';
+import { CreateTenantDto } from '../dto/admin-create-tenant.dto';
 import { Tenant } from '../entity/tenant.entity';
 import { TenancyUtil } from '../../../global/tenancy/tenancy.utils';
 

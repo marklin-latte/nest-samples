@@ -2,7 +2,7 @@ import { TenantsService } from './tenants.service';
 import { Tenant } from '../entity/tenant.entity';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { CreateTenantDto } from '../dto/create-tenant.dto';
+import { CreateTenantDto } from '../dto/admin-create-tenant.dto';
 import { TenancyModule } from '../../../global/tenancy/tenancy.module';
 
 describe('Tenant Utils Test', () => {

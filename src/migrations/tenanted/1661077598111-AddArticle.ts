@@ -7,9 +7,7 @@ import {
 
 const nameStrategy = new DefaultNamingStrategy();
 export class AddArticle1638963391898 implements MigrationInterface {
-  name = 'AddArticle1661077598110';
   public async up(queryRunner: QueryRunner): Promise<void> {
-    console.log('nonono');
     const articleTable = new Table({
       columns: [
         {
