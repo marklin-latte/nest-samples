@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateTenantDto } from '../dto/create-tenant.dto';
@@ -7,6 +7,8 @@ import { TenancyUtil } from '../../../global/tenancy/tenancy.utils';
 
 @Injectable()
 export class TenantsService {
+  logger = new Logger('ProductsService');
+
   constructor(
     @InjectRepository(Tenant)
     private readonly tenantsRepository: Repository<Tenant>,
@@ -17,12 +19,9 @@ export class TenantsService {
     let tenant = new Tenant();
     tenant.name = createTenantDto.name;
 
-    console.log('1');
-    console.log(this.tenantsRepository);
+    this.logger.log(`${tenant.name} has been created !!!`);
     tenant = await this.tenantsRepository.save(tenant);
-    console.log('2');
     await this.tenancyUtil.executeTenantMigration(tenant.id);
-    console.log('3');
 
     return tenant;
   }

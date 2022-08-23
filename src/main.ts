@@ -5,6 +5,8 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { tenancyMiddleware } from './modules/global/tenancy/tenancy.middleware';
 import { DataSource } from 'typeorm';
 import configuration from './config/configuration';
+import { WinstonModule } from 'nest-winston';
+import winstonConfig from './config/winston.config';
 
 async function bootstrap() {
   // 在 app 開啟前，要先將資料庫的 public schema 建好。
@@ -18,7 +20,9 @@ async function bootstrap() {
   await connection.query(`CREATE SCHEMA IF NOT EXISTS "public"`);
   await connection.destroy();
 
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    logger: WinstonModule.createLogger(winstonConfig()),
+  });
   app.use(tenancyMiddleware);
 
   app.useGlobalPipes(new ValidationPipe());
