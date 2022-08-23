@@ -4,11 +4,17 @@ import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import configuration from './config/configuration';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UsersModule } from './contexts/adminCreatorManage/users.module';
 import * as path from 'path';
+import { RouterModule } from 'nest-router';
+import { routers } from './app.routes';
+import { TenantModule } from './modules/public/tenants/tenant.module';
+import { TenancyModule } from './modules/global/tenancy/tenancy.module';
+import { CreatorModule } from './modules/tenanted/creator/creator.module';
+import { ArticleModule } from './modules/tenanted/article/article.module';
 
 @Module({
   imports: [
+    RouterModule.forRoutes(routers),
     ConfigModule.forRoot({
       envFilePath: `${process.cwd()}/src/config/.env.${process.env.NODE_ENV}`,
       load: [configuration],
@@ -25,15 +31,18 @@ import * as path from 'path';
           password: config.get('db.password'),
           database: config.get('db.name'),
           entities: [
-            path.join(__dirname, '/contexts/**/entity', '*.entity.js'),
+            path.join(__dirname, '/modules/**/**/entity', '*.entity.js'),
           ],
-          // production 不能開啟
-          synchronize: true,
+          migrations: [path.join(__dirname, './migrations/public/*{.ts,.js}')],
+          migrationsRun: true,
         };
       },
       inject: [ConfigService],
     }),
-    UsersModule,
+    TenantModule,
+    TenancyModule,
+    CreatorModule,
+    ArticleModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -8,7 +8,7 @@ import {
   Min,
 } from 'class-validator';
 
-export class CreateUserDto {
+export class CreateCreatorDto {
   @ApiProperty({
     description: '帳號',
   })
