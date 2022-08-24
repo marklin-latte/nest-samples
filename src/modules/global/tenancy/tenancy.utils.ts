@@ -10,7 +10,7 @@ const connectionMap: Map<string, DataSource> = new Map();
 export class TenancyUtil {
   async getTenantConnection(tenantId: string): Promise<DataSource> {
     const connectionName = `tenant_${tenantId}`;
-    return this.getCollectionBySchema(connectionName);
+    return this.getConnectionBySchema(connectionName);
   }
 
   async executeTenantMigration(tenantId: string): Promise<any> {
@@ -27,7 +27,7 @@ export class TenancyUtil {
     }
   }
 
-  private async getCollectionBySchema(schemaName: string): Promise<DataSource> {
+  private async getConnectionBySchema(schemaName: string): Promise<DataSource> {
     if (connectionMap.has(schemaName)) {
       return connectionMap.get(schemaName);
     }

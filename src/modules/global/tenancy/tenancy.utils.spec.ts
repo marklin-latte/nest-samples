@@ -4,7 +4,7 @@ import { TenancyUtil } from './tenancy.utils';
 
 describe('Tenant Utils Test', () => {
   let dataSourceInitSpy: jest.SpyInstance;
-  let tenancyUtil;
+  let tenancyUtil: TenancyUtil;
 
   beforeEach(async () => {
     dataSourceInitSpy = jest.spyOn(DataSource.prototype, 'initialize');

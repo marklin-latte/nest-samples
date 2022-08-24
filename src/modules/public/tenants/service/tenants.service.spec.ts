@@ -4,6 +4,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { CreateTenantDto } from '../dto/admin-create-tenant.dto';
 import { TenancyModule } from '../../../global/tenancy/tenancy.module';
+import { TenancyUtil } from '../../../global/tenancy/tenancy.utils';
 
 describe('Tenant Utils Test', () => {
   let mockTenant: Tenant;
@@ -23,6 +24,12 @@ describe('Tenant Utils Test', () => {
           provide: getRepositoryToken(Tenant),
           useValue: {
             save: repositorySaveMock,
+          },
+        },
+        {
+          provide: TenancyUtil,
+          useValue: {
+            executeTenantMigration: jest.fn(),
           },
         },
       ],
