@@ -1,6 +1,7 @@
 import { Routes } from 'nest-router';
 import { AppModule } from './app.module';
-import { TenantModule } from './modules/public/tenants/tenant.module';
+import { TenantModule } from './modules/public/tenant/tenant.module';
+import { ArticleModule } from './modules/tenanted/article/article.module';
 
 export const routers: Routes = [
   {
@@ -8,8 +9,12 @@ export const routers: Routes = [
     module: AppModule,
     children: [
       {
-        path: '/tenants',
+        path: 'public/tenants',
         module: TenantModule,
+      },
+      {
+        path: 'tenanted/articles',
+        module: ArticleModule,
       },
     ],
   },

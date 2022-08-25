@@ -1,15 +1,15 @@
-import { TenantsService } from './tenants.service';
+import { AdminTenantUseCase } from './admin-tenant.usecase';
 import { Tenant } from '../entity/tenant.entity';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { CreateTenantInputDto } from '../dto/create-tenant-input.dto';
+import { AdminCreateTenantInputDto } from '../dto/admin-create-tenant-input.dto';
 import { TenancyModule } from '../../../global/tenancy/tenancy.module';
 import { TenancyUtil } from '../../../global/tenancy/tenancy.utils';
 
-describe('Tenant Utils Test', () => {
+describe('AdminTenantUseCase Test', () => {
   let mockTenant: Tenant;
   let repositorySaveMock: jest.Mock;
-  let service: TenantsService;
+  let adminTenantUseCase: AdminTenantUseCase;
 
   beforeEach(async () => {
     mockTenant = new Tenant();
@@ -19,7 +19,7 @@ describe('Tenant Utils Test', () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [TenancyModule],
       providers: [
-        TenantsService,
+        AdminTenantUseCase,
         {
           provide: getRepositoryToken(Tenant),
           useValue: {
@@ -35,7 +35,7 @@ describe('Tenant Utils Test', () => {
       ],
     }).compile();
 
-    service = module.get<TenantsService>(TenantsService);
+    adminTenantUseCase = module.get<AdminTenantUseCase>(AdminTenantUseCase);
   });
 
   afterEach(() => {
@@ -50,9 +50,9 @@ describe('Tenant Utils Test', () => {
     repositorySaveMock.mockResolvedValue(tenant);
 
     // Act
-    const result: Tenant = await service.create({
+    const result: Tenant = await adminTenantUseCase.createTenant({
       name: tenant.name,
-    } as CreateTenantInputDto);
+    } as AdminCreateTenantInputDto);
 
     // Assert
     expect({

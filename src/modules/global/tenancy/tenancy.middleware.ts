@@ -9,6 +9,6 @@ export function tenancyMiddleware(
 ): void {
   const header = req.headers[TENANT_HEADER] as string;
   // 如果沒帶 tenant 會讓他去 public tenant，這之後會多加權限驗證
-  req.tenantId = header?.toString() || 'public';
+  req.tenantId = header?.toString();
   next();
 }
