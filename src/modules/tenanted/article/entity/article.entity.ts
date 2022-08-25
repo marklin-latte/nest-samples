@@ -28,15 +28,14 @@ export class Article {
   content: string;
 
   @CreateDateColumn({
-    type: 'timestamp',
-    default: () => 'CURRENT_TIMESTAMP(6)',
+    type: 'timestamp without time zone',
+    name: 'createdAt',
   })
-  public createdAt: Date;
+  createdAt: Date;
 
   @UpdateDateColumn({
-    type: 'timestamp',
-    default: () => 'CURRENT_TIMESTAMP(6)',
-    onUpdate: 'CURRENT_TIMESTAMP(6)',
+    type: 'timestamp without time zone',
+    name: 'updatedAt',
   })
-  public updatedAt: Date;
+  updatedAt: Date;
 }

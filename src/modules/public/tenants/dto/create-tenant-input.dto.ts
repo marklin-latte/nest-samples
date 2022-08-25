@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsEnum, IsNotEmpty } from 'class-validator';
 import { OWNER } from '../../../../constants/tenancy';
 
-export class CreateTenantDto {
+export class CreateTenantInputDto {
   @ApiProperty({
     description: 'Tenant 名稱',
     example: 'Tenant A',

@@ -38,15 +38,14 @@ export class Creator {
   isActive: boolean;
 
   @CreateDateColumn({
-    type: 'timestamp',
-    default: () => 'CURRENT_TIMESTAMP(6)',
+    type: 'timestamp without time zone',
+    name: 'createdAt',
   })
-  public created_at: Date;
+  createdAt: Date;
 
   @UpdateDateColumn({
-    type: 'timestamp',
-    default: () => 'CURRENT_TIMESTAMP(6)',
-    onUpdate: 'CURRENT_TIMESTAMP(6)',
+    type: 'timestamp without time zone',
+    name: 'updatedAt',
   })
-  public updated_at: Date;
+  updatedAt: Date;
 }

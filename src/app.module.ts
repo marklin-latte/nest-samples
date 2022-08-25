@@ -29,9 +29,7 @@ import { GlobalModule } from './modules/global/global.module';
           username: config.get('db.username'),
           password: config.get('db.password'),
           database: config.get('db.name'),
-          entities: [
-            path.join(__dirname, '/modules/**/**/entity', '*.entity.js'),
-          ],
+          entities: [path.join(__dirname, '/modules/**/entity', '*.entity.js')],
           migrations: [path.join(__dirname, './migrations/public/*{.ts,.js}')],
           migrationsRun: true,
         };

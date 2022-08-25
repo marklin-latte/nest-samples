@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreateTenantDto } from '../dto/admin-create-tenant.dto';
+import { CreateTenantInputDto } from '../dto/create-tenant-input.dto';
 import { Tenant } from '../entity/tenant.entity';
 import { TenancyUtil } from '../../../global/tenancy/tenancy.utils';
 
@@ -15,9 +15,9 @@ export class TenantsService {
     private readonly tenancyUtil: TenancyUtil,
   ) {}
 
-  async create(createTenantDto: CreateTenantDto): Promise<Tenant> {
+  async create(createTenantInputDto: CreateTenantInputDto): Promise<Tenant> {
     let tenant = new Tenant();
-    tenant.name = createTenantDto.name;
+    tenant.name = createTenantInputDto.name;
 
     this.logger.log(`${tenant.name} has been created !!!`);
     tenant = await this.tenantsRepository.save(tenant);

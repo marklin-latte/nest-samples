@@ -2,7 +2,7 @@ import { TenantsService } from './tenants.service';
 import { Tenant } from '../entity/tenant.entity';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { CreateTenantDto } from '../dto/admin-create-tenant.dto';
+import { CreateTenantInputDto } from '../dto/create-tenant-input.dto';
 import { TenancyModule } from '../../../global/tenancy/tenancy.module';
 import { TenancyUtil } from '../../../global/tenancy/tenancy.utils';
 
@@ -52,7 +52,7 @@ describe('Tenant Utils Test', () => {
     // Act
     const result: Tenant = await service.create({
       name: tenant.name,
-    } as CreateTenantDto);
+    } as CreateTenantInputDto);
 
     // Assert
     expect({
