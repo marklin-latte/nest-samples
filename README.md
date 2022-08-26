@@ -35,6 +35,10 @@
 
 ![](./img/hahow-micro.png)
 
+然後未來如果要建立某個組織下的一篇文章，流程會如下圖:
+
+![](./img//tenant.png)
+
 ### Module
 
 該專案使用 nestjs 所提供的 module 來進行明確的職責分離與限制
@@ -56,7 +60,7 @@
 
 ![](./img/modules.png)
 
-## Module Soft Architecture 
+## Module Architecture 
 
 理論上來說，每一個 module 內部可以直接決定不同的軟體架構，根據該 module 的複雜度來決定，
 然後目前就先以基本算是三層式架構的簡單版變型來當 article 與 tenant 這兩個 module 來處理，

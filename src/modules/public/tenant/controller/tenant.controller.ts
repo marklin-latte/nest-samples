@@ -3,6 +3,7 @@ import { AdminCreateTenantInputDto } from '../dto/admin-create-tenant-input.dto'
 import { Tenant } from '../entity/tenant.entity';
 import { AdminTenantUseCase } from '../usecase/admin-tenant.usecase';
 import { ApiTags, ApiCreatedResponse } from '@nestjs/swagger';
+import { AdminCreateTenantOutputDto } from '../dto/admin-create-tenant-output.dto';
 
 @ApiTags('tenants')
 @Controller()
@@ -11,12 +12,20 @@ export class TenantController {
 
   @Post()
   @ApiCreatedResponse({
-    type: Tenant,
+    type: AdminCreateTenantOutputDto,
   })
-  create(
+  async create(
     @Body() adminCreateTenantInputDto: AdminCreateTenantInputDto,
-  ): Promise<Tenant> {
-    return this.adminTenantUseCase.createTenant(adminCreateTenantInputDto);
+  ): Promise<AdminCreateTenantOutputDto> {
+    const tenant = await this.adminTenantUseCase.createTenant(
+      adminCreateTenantInputDto,
+    );
+    return {
+      id: tenant.id,
+      name: tenant.name,
+      createdAt: tenant.createdAt,
+      updatedAt: tenant.updatedAt,
+    } as AdminCreateTenantOutputDto;
   }
 
   @Get()

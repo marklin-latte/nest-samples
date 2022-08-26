@@ -8,11 +8,8 @@ import {
 
 @Entity()
 export class Article {
-  @PrimaryGeneratedColumn({
-    type: 'bigint',
-    name: 'id',
-  })
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column({
     name: 'title',
