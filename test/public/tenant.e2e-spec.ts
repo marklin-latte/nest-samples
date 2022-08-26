@@ -1,6 +1,6 @@
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
-import initApp from './bootstraps/init-app';
+import initApp from '../utils/init-app';
 
 describe('Tenant (e2e)', () => {
   let app: INestApplication;

@@ -1,6 +1,6 @@
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
-import initApp, { IE2EApp } from './bootstraps/init-app';
+import initApp, { IE2EApp } from '../utils/init-app';
 
 describe('Tenanted Article (e2e)', () => {
   let app: INestApplication;
